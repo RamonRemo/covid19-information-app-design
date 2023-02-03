@@ -1,13 +1,12 @@
-import 'dart:ui';
-
-import 'package:covid_19_app/constants.dart';
-import 'package:covid_19_app/screens/details_screen.dart';
-import 'package:covid_19_app/widgets/info_card.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:covid19_information_app/constants.dart';
+import 'package:covid19_information_app/screens/details_screen.dart';
+import 'package:covid19_information_app/widgets/info_card.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,11 +17,11 @@ class HomeScreen extends StatelessWidget {
           children: <Widget>[
             Container(
               padding:
-                  EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 40),
+                  const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 40),
               width: double.infinity,
               decoration: BoxDecoration(
                 color: kPrimaryColor.withOpacity(0.1),
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(50),
                   bottomRight: Radius.circular(50),
                 ),
@@ -34,31 +33,31 @@ class HomeScreen extends StatelessWidget {
                   InfoCard(
                     effectedNum: 1069,
                     title: "Confirmed Cases",
-                    iconColor: Color(0xFFFF8C00),
+                    iconColor: const Color(0xFFFF8C00),
                     press: () {},
                   ),
                   InfoCard(
                     effectedNum: 75,
                     title: "Total Deaths",
-                    iconColor: Color(0xFFFF2D55),
+                    iconColor: const Color(0xFFFF2D55),
                     press: () {},
                   ),
                   InfoCard(
                     effectedNum: 689,
                     title: "Total Recovered",
-                    iconColor: Color(0xFF50E3C2),
+                    iconColor: const Color(0xFF50E3C2),
                     press: () {},
                   ),
                   InfoCard(
                     effectedNum: 52,
                     title: "New Cases",
-                    iconColor: Color(0xFF5856D6),
+                    iconColor: const Color(0xFF5856D6),
                     press: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return DetailsScreen();
+                            return const DetailsScreen();
                           },
                         ),
                       );
@@ -67,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -77,12 +76,12 @@ class HomeScreen extends StatelessWidget {
                     "Preventions",
                     style: Theme.of(context)
                         .textTheme
-                        .title
+                        .titleMedium!
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   buildPreventations(),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   buildHelpCard(context)
                 ],
               ),
@@ -96,7 +95,7 @@ class HomeScreen extends StatelessWidget {
   Row buildPreventations() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
+      children: const <Widget>[
         PreventionCard(
           text: "Wash Hands",
           image: "assets/icons/hand_wash.svg",
@@ -113,8 +112,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Container buildHelpCard(BuildContext context) {
-    return Container(
+  buildHelpCard(BuildContext context) {
+    return SizedBox(
       height: 150,
       width: double.infinity,
       child: Stack(
@@ -128,7 +127,7 @@ class HomeScreen extends StatelessWidget {
             height: 130,
             width: double.infinity,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 colors: [Color(0xFF60BE93), Color(0xFF1B8D59)],
               ),
               borderRadius: BorderRadius.circular(20),
@@ -140,7 +139,7 @@ class HomeScreen extends StatelessWidget {
                     text: "Dial 999 for \n medical Help! \n",
                     style: Theme.of(context)
                         .textTheme
-                        .title
+                        .titleMedium!
                         .copyWith(color: Colors.white),
                   ),
                   TextSpan(
@@ -155,9 +154,9 @@ class HomeScreen extends StatelessWidget {
             child: SvgPicture.asset("assets/icons/nurse.svg"),
           ),
           Positioned(
-            child: SvgPicture.asset("assets/icons/virus.svg"),
             top: 30,
             right: 10,
+            child: SvgPicture.asset("assets/icons/virus.svg"),
           )
         ],
       ),
@@ -183,11 +182,11 @@ class HomeScreen extends StatelessWidget {
 }
 
 class PreventionCard extends StatelessWidget {
-  final String text;
-  final String image;
+  final String? text;
+  final String? image;
 
   const PreventionCard({
-    Key key,
+    Key? key,
     this.text,
     this.image,
   }) : super(key: key);
@@ -196,11 +195,13 @@ class PreventionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SvgPicture.asset(image),
+        SvgPicture.asset(image!),
         Text(
-          text,
-          style:
-              Theme.of(context).textTheme.title.copyWith(color: kPrimaryColor),
+          text!,
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(color: kPrimaryColor),
         )
       ],
     );

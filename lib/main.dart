@@ -1,12 +1,14 @@
-import 'package:covid_19_app/constants.dart';
-import 'package:covid_19_app/screens/home_screen.dart';
+import 'package:covid19_information_app/constants.dart';
+import 'package:covid19_information_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: kBackgroundColor,
         textTheme: Theme.of(context).textTheme.apply(displayColor: kTextColor),
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }

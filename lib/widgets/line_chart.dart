@@ -1,9 +1,11 @@
-import 'package:covid_19_app/constants.dart';
+import 'package:covid19_information_app/constants.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 
 class LineReportChart extends StatelessWidget {
+  const LineReportChart({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -18,7 +20,7 @@ class LineReportChart extends StatelessWidget {
                 isCurved: true,
                 dotData: FlDotData(show: false),
                 belowBarData: BarAreaData(show: false),
-                colors: [kPrimaryColor],
+                color: kPrimaryColor,
                 barWidth: 3,
               )
             ])));

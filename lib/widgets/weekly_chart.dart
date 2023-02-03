@@ -1,8 +1,11 @@
-import 'package:covid_19_app/constants.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class WeeklyChart extends StatelessWidget {
+  const WeeklyChart({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -12,16 +15,12 @@ class WeeklyChart extends StatelessWidget {
           barGroups: getBarGroups(),
           borderData: FlBorderData(show: false),
           titlesData: FlTitlesData(
-            leftTitles: SideTitles(
-              showTitles: false,
-            ),
-            bottomTitles: SideTitles(
-              showTitles: true,
-              getTitles: getWeek,
-              textStyle: TextStyle(
-                color: Color(0xFF7589A2),
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
+            bottomTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                getTitlesWidget: (value, TitleMeta) {
+                  return Text(getWeek(value));
+                },
               ),
             ),
           ),
@@ -40,7 +39,8 @@ getBarGroups() {
             x: i,
             barRods: [
               BarChartRodData(
-                y: value,
+                toY: value,
+                // y: value,
                 //This is not the proper way, this is just for demo
                 color: i == 4 ? kPrimaryColor : kInactiveChartColor,
                 width: 16,

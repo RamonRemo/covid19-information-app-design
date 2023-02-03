@@ -5,16 +5,17 @@ import '../constants.dart';
 import 'line_chart.dart';
 
 class InfoCard extends StatelessWidget {
-  final String title;
-  final int effectedNum;
-  final Color iconColor;
-  final Function press;
+  final String? title;
+  final int? effectedNum;
+  final Color? iconColor;
+  final Function() press;
 
   const InfoCard({
-    Key key,
+    Key? key,
     this.title,
     this.effectedNum,
-    this.iconColor, this.press,
+    this.iconColor,
+    required this.press,
   }) : super(key: key);
 
   @override
@@ -40,7 +41,7 @@ class InfoCard extends StatelessWidget {
                         height: 30,
                         width: 30,
                         decoration: BoxDecoration(
-                          color: iconColor.withOpacity(0.12),
+                          color: iconColor!.withOpacity(0.12),
                           shape: BoxShape.circle,
                         ),
                         child: SvgPicture.asset(
@@ -50,9 +51,9 @@ class InfoCard extends StatelessWidget {
                           color: iconColor,
                         ),
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Text(
-                        title,
+                        title!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -67,16 +68,16 @@ class InfoCard extends StatelessWidget {
                         padding: const EdgeInsets.all(10.0),
                         child: RichText(
                           text: TextSpan(
-                            style: TextStyle(color: kTextColor),
+                            style: const TextStyle(color: kTextColor),
                             children: [
                               TextSpan(
                                 text: "$effectedNum \n",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .title
+                                    .titleMedium!
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
-                              TextSpan(
+                              const TextSpan(
                                 text: "People",
                                 style: TextStyle(
                                   fontSize: 12,
@@ -87,7 +88,7 @@ class InfoCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Expanded(
+                      const Expanded(
                         child: LineReportChart(),
                       ),
                     ],
